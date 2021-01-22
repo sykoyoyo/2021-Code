@@ -63,6 +63,13 @@ class MyRobot(wpilib.TimedRobot):
 
         self.myRobot.arcadeDrive(self.joy.getRawAxis(1), self.joy.getRawAxis(0), True)
 
+        if (self.shoot.get()):
+            self.topshooter.set(.75, True)
+            self.bottomshooter.set(-.75, True)
+        else:
+            self.topshooter.set(0)
+            self.bottomshooter.set(0)
+
 
 if __name__ == "__main__":
     wpilib.run(MyRobot)
