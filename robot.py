@@ -24,7 +24,7 @@ class MyRobot(wpilib.TimedRobot):
         self.motor5 = ctre.TalonFX(5)
         self.joy = wpilib.XboxController(0)
 
-        self.arm = wpilib.Solenoid(1)
+        #self.arm = wpilib.Solenoid(1)
 
         self.left = wpilib.SpeedControllerGroup(self.motor1, self.motor2)
         self.right = wpilib.SpeedControllerGroup(self.motor3, self.motor4)
@@ -36,7 +36,7 @@ class MyRobot(wpilib.TimedRobot):
         self.components = {
             'myRobot': self.myRobot,
             'motor5': self.motor5,
-            'arm': self.arm
+            #'arm': self.arm
         }
 
         self.automodes = AutonomousModeSelector('autonomous', self.components)
@@ -62,10 +62,10 @@ class MyRobot(wpilib.TimedRobot):
         self.myRobot.arcadeDrive(self.joy.getY(), self.joy.getX())
 
         if self.joy.getAButton():
-            self.arm.set(True)
+            #self.arm.set(True)
             self.motor5.set(.25)
         else:
-            self.arm.set(False)
+            #self.arm.set(False)
             if self.joy.getXButton():
                 self.motor5.set(-1)
             else:
