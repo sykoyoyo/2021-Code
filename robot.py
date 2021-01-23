@@ -59,7 +59,7 @@ class MyRobot(wpilib.TimedRobot):
     def teleopPeriodic(self):
         """Runs Robot on Tank Drive like a skid steer, two joysticks"""
 
-        self.myRobot.arcadeDrive(-1*self.joy.getRawAxis(1), self.joy.getRawAxis(0)) * .5
+        self.myRobot.arcadeDrive(-1*self.joy.getRawAxis(1), self.joy.getRawAxis(0), .7)
         """
         if self.joy.getAButton():
             self.arm.set(True)
