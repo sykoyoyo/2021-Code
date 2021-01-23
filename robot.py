@@ -21,8 +21,8 @@ class MyRobot(wpilib.TimedRobot):
         self.motor2 = ctre.WPI_TalonSRX(2)
         self.motor3 = ctre.WPI_TalonSRX(3)
         self.motor4 = ctre.WPI_TalonSRX(4)
-        self.motor5 = ctre.TalonFX(5)
-        self.joy = wpilib.XboxController(0)
+        #self.motor5 = ctre.TalonFX(5)
+        self.joy = wpilib.Joystick(0)
 
         #self.arm = wpilib.Solenoid(1)
 
@@ -35,7 +35,7 @@ class MyRobot(wpilib.TimedRobot):
 
         self.components = {
             'myRobot': self.myRobot,
-            'motor5': self.motor5,
+            #'motor5': self.motor5,
             #'arm': self.arm
         }
 
@@ -59,18 +59,18 @@ class MyRobot(wpilib.TimedRobot):
     def teleopPeriodic(self):
         """Runs Robot on Tank Drive like a skid steer, two joysticks"""
 
-        self.myRobot.arcadeDrive(self.joy.getY(), self.joy.getX())
-
+        self.myRobot.arcadeDrive(self.joy.getRawAxis(1), self.joy.getRawAxis(0))
+        """
         if self.joy.getAButton():
-            #self.arm.set(True)
+            self.arm.set(True)
             self.motor5.set(.25)
         else:
-            #self.arm.set(False)
+            self.arm.set(False)
             if self.joy.getXButton():
                 self.motor5.set(-1)
             else:
                 self.motor5.set(0)
-
+                    """
 
 if __name__ == "__main__":
     wpilib.run(MyRobot)
