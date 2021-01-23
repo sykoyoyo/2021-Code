@@ -4,7 +4,7 @@ from robotpy_ext.autonomous import StatefulAutonomous, timed_state, state
 
 class DriveForward(StatefulAutonomous):
 
-    MODE_NAME = 'Drive Forward Turn'
+    MODE_NAME = 'Drive Mikal'
 
     def initialize(self):
 
@@ -14,13 +14,9 @@ class DriveForward(StatefulAutonomous):
     def drive_wait(self):
         self.myRobot.tankDrive(0,0)
 
-    @timed_state(duration=1, next_state='drive_right')
+    @timed_state(duration=4, next_state='stop')
     def drive_forward(self):
-        self.myRobot.tankDrive(.7, .7)
-
-    @timed_state(duration=1, next_state='stop')
-    def drive_right(self):
-        self.myRobot.tankDrive(0, .7)
+        self.myRobot.tankDrive(1, 1)
 
     @state()
     def stop(self):

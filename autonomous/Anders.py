@@ -4,8 +4,7 @@ from robotpy_ext.autonomous import StatefulAutonomous, timed_state, state
 
 class DriveForward(StatefulAutonomous):
 
-    MODE_NAME = 'Drive Forward Long'
-    DEFAULT = True
+    MODE_NAME = 'Drive anders'
 
     def initialize(self):
 
