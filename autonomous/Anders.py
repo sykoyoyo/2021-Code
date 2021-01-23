@@ -28,7 +28,7 @@ class DriveForward(StatefulAutonomous):
 
     @timed_state(duration=1.4, next_state='drive_forward3')
     def turn_left2(self):
-        self.myRobot.tankDrive(.85, .6)
+        self.myRobot.tankDrive(.6, .85)
 
     @state()
     def stop(self):
