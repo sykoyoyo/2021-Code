@@ -36,6 +36,7 @@ class MyRobot(wpilib.TimedRobot):
 #Here is our DifferentialDrive, Ultimately stating, Left side and Right side of chassis
 #An Alternative to DifferentialDrive is this:
         #self.robodrive = wpilib.RobotDrive(self.motor1, self.motor4, self.motor3, self.motor2)
+        #where motor 1 & 4 are left, and 2 & 3 are right
         self.myRobot.setExpiration(0.1)
 
 
