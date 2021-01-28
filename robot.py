@@ -20,9 +20,9 @@ class MyRobot(wpilib.TimedRobot):
         self.motor4 = ctre.WPI_TalonSRX(4)
         self.motor5 = ctre.TalonFX(5)  #Motor is programmed, but not plugged in yet
 
-        self.joy = wpilib.XboxController(0) #this is a controller, also acceptable to use Joystick
+        self.joy = wpilib.Joystick(0) #this is a controller, also acceptable to use Joystick
 
-        self.arm = wpilib.Solenoid(1) #calling a solenoid to be used with Pneumatics
+        #self.arm = wpilib.Solenoid(1) #calling a solenoid to be used with Pneumatics
 
         self.left = wpilib.SpeedControllerGroup(self.motor1, self.motor2)
         self.right = wpilib.SpeedControllerGroup(self.motor3, self.motor4)
@@ -51,7 +51,7 @@ class MyRobot(wpilib.TimedRobot):
         self.components = {
             'myRobot': self.myRobot,
             'motor5': self.motor5, #again a speed control not setup yet
-            'arm': self.arm #pneumatics arm that is not setup on bot yet
+            #'arm': self.arm #pneumatics arm that is not setup on bot yet
         }
 
         self.automodes = AutonomousModeSelector('autonomous', self.components)
@@ -84,22 +84,22 @@ class MyRobot(wpilib.TimedRobot):
 #Runs Robot on Arcade Drive and pulls
 
 
-        self.myRobot.arcadeDrive(-1*self.joy.getLeftX(), self.joy.getLeftY())
+        self.myRobot.arcadeDrive(-1 * self.joy.getRawAxis(1), self.joy.getRawAxis(0) * -1)
 
 
 #Below is an example code to be used for when a button is pressed
 #do something
 
 
-        if self.joy.getAButton():
-            self.arm.set(True) #Boolean so needs to be True for Out, False for In
-            self.motor5.set(.25) #Value Between -1 and 1 for speeds
-        else:
-            self.arm.set(False)
-            if self.joy.getXButton():
-                self.motor5.set(-1)
-            else:
-                self.motor5.set(0)
+        #if self.joy.getAButton():
+            #self.arm.set(True) #Boolean so needs to be True for Out, False for In
+            #self.motor5.set(.25) #Value Between -1 and 1 for speeds
+        #else:
+            #self.arm.set(False)
+            #if self.joy.getXButton():
+                #self.motor5.set(-1)
+            #else:
+                #self.motor5.set(0)
 
 #If the A button on the XboxController is pushed, Set our Solenoid Arm forward
 #and turn on the intake motor to 25% power. else- Set the Pneumatic arm to rest
