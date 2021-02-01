@@ -40,7 +40,7 @@ class DriveForward(StatefulAutonomous):
 
     @timed_state(duration=2.5, next_state='stop')
     def drive_forward4(self):
-        self.myRobot.tankDrive(.8,.8)
+        self.myRobot.tankDrive(.8, .8)
 
     @state()
     def stop(self):
