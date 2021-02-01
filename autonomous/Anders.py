@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-#hellohumans
+#hellosapiens
 from robotpy_ext.autonomous import StatefulAutonomous, timed_state, state
 
 class DriveForward(StatefulAutonomous):
