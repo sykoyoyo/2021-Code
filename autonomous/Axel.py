@@ -14,12 +14,21 @@ class DriveForward(StatefulAutonomous):
     def drive_wait(self):
         self.myRobot.tankDrive(0,0)
 
+<<<<<<< Updated upstream
     @timed_state(duration=4, next_state='turn_anywhere')
     def drive_forward(self):
         self.myRobot.tankDrive(.8, .8)
 
     @timed_state(duration=0.8, next_state='stop')
     def turn_anywhere(self):
+=======
+    @timed_state(duration=1, next_state='turn_somewhere')
+    def drive_forward(self):
+        self.myRobot.tankDrive(.8, .8)
+
+    @timed_state(duration=1.5, next_state='stop')
+    def turn_somewhere(self):
+>>>>>>> Stashed changes
         self.myRobot.tankDrive(.5, .8)
 
     @state()
