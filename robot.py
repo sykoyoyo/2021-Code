@@ -18,11 +18,13 @@ class MyRobot(wpilib.TimedRobot):
         self.motor2 = ctre.WPI_TalonSRX(2)
         self.motor3 = ctre.WPI_TalonSRX(3)
         self.motor4 = ctre.WPI_TalonSRX(4)
-        self.motor5 = ctre.TalonFX(5)  #Motor is programmed, but not plugged in yet
+        self.motor5 = ctre.TalonFX(5)
+        self.motor6 = ctre.TalonFX(6)  #Motor is programmed, but not plugged in yet
 
         self.joy = wpilib.Joystick(0) #this is a controller, also acceptable to use Joystick
 
         #self.arm = wpilib.Solenoid(1) #calling a solenoid to be used with Pneumatics
+
 
         self.left = wpilib.SpeedControllerGroup(self.motor1, self.motor2)
         self.right = wpilib.SpeedControllerGroup(self.motor3, self.motor4)
@@ -91,15 +93,17 @@ class MyRobot(wpilib.TimedRobot):
 #do something
 
 
-        #if self.joy.getAButton():
-            #self.arm.set(True) #Boolean so needs to be True for Out, False for In
-            #self.motor5.set(.25) #Value Between -1 and 1 for speeds
-        #else:
-            #self.arm.set(False)
-            #if self.joy.getXButton():
-                #self.motor5.set(-1)
-            #else:
-                #self.motor5.set(0)
+        if self.joy.getRawButton(1):
+            self.motor5.set(.3)
+            self.motor6.set(-.3) #Value Between -1 and 1 for speeds
+
+        else:
+            self.motor6.set(0)
+            self.motor5.set(0)
+
+
+
+
 
 #If the A button on the XboxController is pushed, Set our Solenoid Arm forward
 #and turn on the intake motor to 25% power. else- Set the Pneumatic arm to rest

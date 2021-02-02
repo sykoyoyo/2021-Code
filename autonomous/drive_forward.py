@@ -6,7 +6,7 @@ class DriveForward(StatefulAutonomous):
     #Required first two lines of Text!
 
 
-    MODE_NAME = 'Drive Forward Long' - #This is the name the Auto is called
+    MODE_NAME = 'Drive Forward Long' #This is the name the Auto is called
     DEFAULT = True  #only ONE Auto can have this- Makes it the default if none are chosen.  If you have more than one Auto with it on there, it will not work
 
     def initialize(self):
