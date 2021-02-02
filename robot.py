@@ -105,11 +105,6 @@ class MyRobot(wpilib.TimedRobot):
 
 
 
-#If the A button on the XboxController is pushed, Set our Solenoid Arm forward
-#and turn on the intake motor to 25% power. else- Set the Pneumatic arm to rest
-#or back at home, then If the X button is pushed, Rev up our Intake motor to
-#be a shooter at full speed. Else (Otherwise) if nothing is pushed, go to rest
-
 
 if __name__ == "__main__":
     wpilib.run(MyRobot)
