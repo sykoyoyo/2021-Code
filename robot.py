@@ -18,11 +18,11 @@ class MyRobot(wpilib.TimedRobot):
         self.motor2 = ctre.WPI_TalonSRX(2)
         self.motor3 = ctre.WPI_TalonSRX(3)
         self.motor4 = ctre.WPI_TalonSRX(4)
-        self.motor5 = ctre.TalonFX(5)
-        self.motor6 = ctre.TalonFX(6)  #Motor is programmed, but not plugged in yet
+        self.motor5 = ctre.WPI_TalonFX(5)
+        self.motor6 = ctre.WPI_TalonFX(6)  #Motor is programmed, but not plugged in yet
 
         self.joy = wpilib.Joystick(0) #this is a controller, also acceptable to use Joystick
-
+        self.stick = wpilib.Joystick(1)
         #self.arm = wpilib.Solenoid(1) #calling a solenoid to be used with Pneumatics
 
 
@@ -86,7 +86,7 @@ class MyRobot(wpilib.TimedRobot):
 #Runs Robot on Arcade Drive and pulls
 
 
-        self.myRobot.arcadeDrive(-1 * self.joy.getRawAxis(1), self.joy.getRawAxis(0) * -1)
+        self.myRobot.arcadeDrive(-1*self.joy.getRawAxis(1), self.joy.getRawAxis(0))
 
 
 #Below is an example code to be used for when a button is pressed
@@ -94,8 +94,8 @@ class MyRobot(wpilib.TimedRobot):
 
 
         if self.joy.getRawButton(1):
-            self.motor5.set(.3)
-            self.motor6.set(-.3) #Value Between -1 and 1 for speeds
+            self.motor5.set(.70)
+            self.motor6.set(-.40) #Value Between -1 and 1 for speeds
 
         else:
             self.motor6.set(0)
