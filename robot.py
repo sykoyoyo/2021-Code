@@ -14,16 +14,21 @@ from robotpy_ext.autonomous import AutonomousModeSelector
 class MyRobot(wpilib.TimedRobot):
 
     def robotInit(self):
+        #Drive Motors
         self.motor1 = ctre.WPI_TalonSRX(1)  # Initialize the TalonSRX on device 1.
         self.motor2 = ctre.WPI_TalonSRX(2)
         self.motor3 = ctre.WPI_TalonSRX(3)
         self.motor4 = ctre.WPI_TalonSRX(4)
-        self.motor5 = ctre.WPI_TalonFX(5)
-        self.motor6 = ctre.WPI_TalonFX(6)  #Motor is programmed, but not plugged in yet
-        self.motor7 = ctre.WPI_TalonSRX(7)
-        self.motor8 = ctre.WPI_TalonSRX(8)
+
+        self.motor5 = ctre.WPI_TalonFX(5)   #Shooter Motor
+
+        self.motor6 = ctre.WPI_TalonFX(6)   #Intake Motor
+
+        self.motor7 = ctre.WPI_VictorSPX(7) #Intake Arm
+
+        self.motor8 = ctre.WPI_VictorSPX(8) #Belt Drive
+
         self.joy = wpilib.Joystick(0) #this is a controller, also acceptable to use Joystick
-        self.stick = wpilib.Joystick(1)
         #self.arm = wpilib.Solenoid(1) #calling a solenoid to be used with Pneumatics
 
 
@@ -93,38 +98,48 @@ class MyRobot(wpilib.TimedRobot):
 #Below is an example code to be used for when a button is pressed
 #do something
 
-#Shooter
-        if self.joy.getRawButton(1):
+#Shooter Commands
+        if self.joy.getRawButton(1): #Start Shooter Motors
             self.motor5.set(.70)
             self.motor6.set(-.40) #Value Between -1 and 1 for speeds
 
         else:
-            self.motor6.set(0)
-            self.motor5.set(0)
-#Arm out
-        if self.joy.getRawButton(4):
-            self.motor7.set(1)
-            self.motor8.set(1) #Value Between -1 and 1 for speeds
-
-        else:
-            self.motor7.set(0)
-            self.motor8.set(0)
-#Arm In
-        if self.joy.getRawButton(5):
-            self.motor7.set(-1)
-            self.motor8.set(-1) #Value Between -1 and 1 for speeds
+            if self.joy.getRawButton(2): #Turn Intake motors on and Belt
+                self.motor5.set(.25)
+                self.motor8.set(.5)
+                self.motor6.set(-.2)
 
             else:
+                if self.joy.getRawButton(3): #FIRE ZE LAZERZ!
+                    self.motor5.set(.5)
+                    self.motor6.set(-.4)
+                    self.motor8.set(-.5)
+
+                else: #Relax....  take a rest
+                    self.motor6.set(0)
+                    self.motor5.set(0)
+                    self.motor8.set(0)
+#Arm out
+        if self.joy.getRawButton(4): #Move arm out
+            self.motor7.set(1)
+
+        else:
+            if self.joy.getRawButton(5):#Move arm in
+                self.motor7.set(-1)
+
+            else: #Rest Arm
                 self.motor7.set(0)
+
+#Raise and Lower arm
+        if self.joy.getRawButton(8):
+            self.motor8.set(1)
+
+        else:
+            if self.joy.getRawButton(9):
+                self.motor8.set(-1)
+
+            else:
                 self.motor8.set(0)
-
-#Intake motor
-        if self.joy.getRawButton(2):
-            self.motor5.set(.3)
-
-        else
-            self.motor5.set(0)
-
 
 
 if __name__ == "__main__":
