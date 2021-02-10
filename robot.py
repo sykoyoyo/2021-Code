@@ -20,8 +20,8 @@ class MyRobot(wpilib.TimedRobot):
         self.motor4 = ctre.WPI_TalonSRX(4)
         self.motor5 = ctre.WPI_TalonFX(5)
         self.motor6 = ctre.WPI_TalonFX(6)  #Motor is programmed, but not plugged in yet
-        self.motor7 = ctre.WPI_TalonSRX(7)
-        self.motor8 = ctre.WPI_TalonSRX(8)
+        self.motor7 = ctre.WPI_VictorSPX(7)
+        self.motor8 = ctre.WPI_VictorSPX(8)
         self.joy = wpilib.Joystick(0) #this is a controller, also acceptable to use Joystick
         self.stick = wpilib.Joystick(1)
         #self.arm = wpilib.Solenoid(1) #calling a solenoid to be used with Pneumatics
@@ -95,35 +95,34 @@ class MyRobot(wpilib.TimedRobot):
 
 #Shooter
         if self.joy.getRawButton(1):
-            self.motor5.set(.70)
-            self.motor6.set(-.40) #Value Between -1 and 1 for speeds
-
+            self.motor5.set(.50)
+            self.motor6.set(-.30) #Value Between -1 and 1 for speeds
+            
         else:
             self.motor6.set(0)
             self.motor5.set(0)
 #Arm out
         if self.joy.getRawButton(4):
             self.motor7.set(1)
-            self.motor8.set(1) #Value Between -1 and 1 for speeds
 
         else:
             self.motor7.set(0)
-            self.motor8.set(0)
 #Arm In
         if self.joy.getRawButton(5):
             self.motor7.set(-1)
-            self.motor8.set(-1) #Value Between -1 and 1 for speeds
 
-            else:
-                self.motor7.set(0)
-                self.motor8.set(0)
+        else:
+            self.motor7.set(0)
+
 
 #Intake motor
         if self.joy.getRawButton(2):
-            self.motor5.set(.3)
+            self.motor5.set(.25)
+            self.motor8.set(.3)
 
-        else
+        else:
             self.motor5.set(0)
+            self.motor8.set(0)
 
 
 
