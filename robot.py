@@ -57,8 +57,8 @@ class MyRobot(wpilib.TimedRobot):
 #self.chassis.set() instead of self.myRobot.set() when doing commands.
 
         self.components = {
-            'myRobot': self.myRobot,
-            'motor5': self.motor5, #again a speed control not setup yet
+            'myRobot': self.myRobot, #Chassis Driving
+            'motor5': self.motor5, #A speed control that is used for intake
             #'arm': self.arm #pneumatics arm that is not setup on bot yet
         }
 
@@ -89,7 +89,7 @@ class MyRobot(wpilib.TimedRobot):
 
     def teleopPeriodic(self):
 
-#Runs Robot on Arcade Drive and pulls
+#Runs Robot on Arcade Drive 
 
 
         self.myRobot.arcadeDrive(-1*self.joy.getRawAxis(1), self.joy.getRawAxis(0))
