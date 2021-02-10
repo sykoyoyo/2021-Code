@@ -89,14 +89,14 @@ class MyRobot(wpilib.TimedRobot):
 
     def teleopPeriodic(self):
 
-#Runs Robot on Arcade Drive 
+#Runs Robot on Arcade Drive
 
 
         self.myRobot.arcadeDrive(-1*self.joy.getRawAxis(1), self.joy.getRawAxis(0))
 
 
 #Below is an example code to be used for when a button is pressed
-#do something
+#to do something
 
 #Shooter Commands
         if self.joy.getRawButton(1): #Start Shooter Motors
@@ -104,7 +104,7 @@ class MyRobot(wpilib.TimedRobot):
             self.motor6.set(-.40) #Value Between -1 and 1 for speeds
 
         else:
-            if self.joy.getRawButton(2): #Turn Intake motors on and Belt
+            if self.joy.getRawButton(2): #Turn Intake motors on and intake Belt
                 self.motor5.set(.25)
                 self.motor8.set(.5)
                 self.motor6.set(-.2)
@@ -115,7 +115,7 @@ class MyRobot(wpilib.TimedRobot):
                     self.motor6.set(-.4)
                     self.motor8.set(-.5)
 
-                else: #Relax....  take a rest
+                else: #Relax....  take a rest and stop motors
                     self.motor6.set(0)
                     self.motor5.set(0)
                     self.motor8.set(0)
@@ -127,10 +127,10 @@ class MyRobot(wpilib.TimedRobot):
             if self.joy.getRawButton(5):#Move arm in
                 self.motor7.set(-1)
 
-            else: #Rest Arm
+            else: #Stop Arm
                 self.motor7.set(0)
 
-#Raise and Lower arm
+#Raise and Lower Shooter Gantry
         if self.joy.getRawButton(8):
             self.motor8.set(1)
 
