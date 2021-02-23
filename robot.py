@@ -14,6 +14,7 @@ from robotpy_ext.autonomous import AutonomousModeSelector
 class MyRobot(wpilib.TimedRobot):
 
     def robotInit(self):
+        wpilib.CameraServer.launch("vision.py:main") #launch webcam CameraServer
         #Drive Motors
         self.motor1 = ctre.WPI_TalonSRX(1)  # Initialize the TalonSRX on device 1.
         self.motor2 = ctre.WPI_TalonSRX(2)
@@ -30,7 +31,10 @@ class MyRobot(wpilib.TimedRobot):
 
         self.joy = wpilib.Joystick(0) #this is a controller, also acceptable to use Joystick
         #self.arm = wpilib.Solenoid(1) #calling a solenoid to be used with Pneumatics
-
+        self.armout = wpilib.Solenoid(1)
+        self.armin = wpilib.Solenoid(2)
+        self.ballup = wpilib.Solenoid(3)
+        self.balldown = wpilib.Solenoid(4)
 
         self.left = wpilib.SpeedControllerGroup(self.motor1, self.motor2)
         self.right = wpilib.SpeedControllerGroup(self.motor3, self.motor4)
@@ -100,25 +104,25 @@ class MyRobot(wpilib.TimedRobot):
 
 #Shooter Commands
         if self.joy.getRawButton(1): #Start Shooter Motors
-            self.motor5.set(.70)
+            self.motor5.set(.60)
             self.motor6.set(-.40) #Value Between -1 and 1 for speeds
 
         else:
             if self.joy.getRawButton(2): #Turn Intake motors on and intake Belt
                 self.motor5.set(.25)
-                self.motor8.set(.5)
-                self.motor6.set(-.2)
+                self.motor6.set(.2)
 
             else:
                 if self.joy.getRawButton(3): #FIRE ZE LAZERZ!
-                    self.motor5.set(.5)
+                    self.motor5.set(.6)
                     self.motor6.set(-.4)
                     self.motor8.set(-.5)
 
-                else: #Relax....  take a rest and stop motors
-                    self.motor6.set(0)
-                    self.motor5.set(0)
-                    self.motor8.set(0)
+                else:
+                    if self.joy.getRawButton(7): #Relax....  take a rest and stop motors
+                        self.motor6.set(0)
+                        self.motor5.set(0)
+                        self.motor8.set(0)
 #Arm out
         if self.joy.getRawButton(4): #Move arm out
             self.motor7.set(1)
@@ -127,19 +131,20 @@ class MyRobot(wpilib.TimedRobot):
             if self.joy.getRawButton(5):#Move arm in
                 self.motor7.set(-1)
 
-            else: #Stop Arm
-                self.motor7.set(0)
+            else:
+                if self.joy.getRawButton(6): #Stop Arm
+                    self.motor7.set(0)
 
 #Raise and Lower Shooter Gantry
-        if self.joy.getRawButton(8):
-            self.motor8.set(1)
+        #if self.joy.getRawButton(8):
+        #    self.motor8.set(1)
 
-        else:
-            if self.joy.getRawButton(9):
-                self.motor8.set(-1)
+        #else:
+        #    if self.joy.getRawButton(9):
+        #        self.motor8.set(-1)
 
-            else:
-                self.motor8.set(0)
+        #    else:
+        #        self.motor8.set(0)
 
 
 if __name__ == "__main__":
