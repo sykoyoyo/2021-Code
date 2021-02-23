@@ -125,15 +125,13 @@ class MyRobot(wpilib.TimedRobot):
                         self.motor8.set(0)
 #Arm out
         if self.joy.getRawButton(4): #Move arm out
-            self.motor7.set(1)
+            self.armout.set(True)
 
         else:
             if self.joy.getRawButton(5):#Move arm in
-                self.motor7.set(-1)
+                self.armin.set(True)
 
-            else:
-                if self.joy.getRawButton(6): #Stop Arm
-                    self.motor7.set(0)
+            
 
 #Raise and Lower Shooter Gantry
         #if self.joy.getRawButton(8):
