@@ -11,7 +11,7 @@ class DriveForward(StatefulAutonomous):
         self.speed = -.4
 
     @timed_state(duration=0.5, next_state='drive_forward', first=True)
-    gdef drive_wait(self):
+    def drive_wait(self):
         self.myRobot.tankDrive(0,0)
 
     @timed_state(duration=3, next_state='turn_right')
