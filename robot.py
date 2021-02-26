@@ -61,7 +61,7 @@ class MyRobot(wpilib.TimedRobot):
         self.components = {
             'myRobot': self.myRobot, #Chassis Driving
             'motor5': self.motor5, #A speed control that is used for intake
-            #'arm': self.arm #pneumatics arm that is not setup on bot yet
+            'intake': self.intake #pneumatics arm that is not setup on bot yet
         }
 
         self.automodes = AutonomousModeSelector('autonomous', self.components)
@@ -102,30 +102,32 @@ class MyRobot(wpilib.TimedRobot):
 
 #Shooter Commands
         if self.joy.getRawButton(1): #Start Shooter Motors
-            self.motor5.set(.60)
-            self.motor6.set(-.40) #Value Between -1 and 1 for speeds
+            self.motor5.set(.70)
+            self.motor6.set(-.30) #Value Between -1 and 1 for speeds
 
         else:
             if self.joy.getRawButton(2): #Turn Intake motors on and intake Belt
                 self.motor5.set(.25)
-                self.motor6.set(.2)
+                self.motor6.set(.1)
 
             else:
-                if self.joy.getRawButton(3): #FIRE ZE LAZERZ!
-                    self.motor5.set(.6)
-                    self.motor6.set(-.4)
-
-
-                else:
-                    if self.joy.getRawButton(7): #Relax....  take a rest and stop motors
+                if self.joy.getRawButton(7): #Relax....  take a rest and stop motors
                         self.motor6.set(0)
                         self.motor5.set(0)
 
 #Arm out
-        self.intake.set(wpilib.DoubleSolenoid.Value.kReverse)
 
         if self.joy.getRawButton(4):
-            self.intake.toggle()
+            self.intake.set(wpilib.DoubleSolenoid.Value.kForward)
+
+        elif self.joy.getRawButton(5):
+            self.intake.set(wpilib.DoubleSolenoid.Value.kReverse)
+
+        if self.joy.getRawButton(3):
+            self.balls.set(wpilib.DoubleSolenoid.Value.kReverse)
+
+        elif self.joy.getRawButton(7):
+            self.balls.set(wpilib.DoubleSolenoid.Value.kForward)
 
 
 
