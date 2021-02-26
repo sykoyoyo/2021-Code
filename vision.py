@@ -6,6 +6,7 @@ import wpilib.drive
 import ctre
 from robotpy_ext.autonomous import AutonomousModeSelector
 from networktables import NetworkTables
+import wpilib.drive.PIDController
 
 
 #Import is pulling all the libraries and API's you need for your code,
@@ -18,12 +19,13 @@ class MyRobot(wpilib.TimedRobot):
 
         #Limelight Pulling of information - NetworkTables
         table = NetworkTables.getTable("limelight")
-        tx = table.getNumber('tx',None)
-        ty = table.getNumber('ty',None)
-        ta = table.getNumber('ta',None)
-        ts = table.getNumber('ts',None)
+        tx = table.getNumber('tx',None) #Horizontal Offset From Crosshair To Target
+        ty = table.getNumber('ty',None) #Vertical Offset From Crosshair To Target
+        ta = table.getNumber('ta',None) #Target Area (0% of image to 100% of image)
+        ts = table.getNumber('ts',None) #Skew or rotation (-90 degrees to 0 degrees)
+        tv = table.getNumber('tv',None) #Whether the limelight has any valid targets (0 or 1)
 
-        wpilib.CameraServer.launch() #launch webcam CameraServer
+
         #Drive Motors
         self.motor1 = ctre.WPI_TalonSRX(1)  # Initialize the TalonSRX on device 1.
         self.motor2 = ctre.WPI_TalonSRX(2)
@@ -105,6 +107,11 @@ class MyRobot(wpilib.TimedRobot):
 
         self.myRobot.arcadeDrive(-1*self.joy.getRawAxis(1), self.joy.getRawAxis(0))
 
+        print ta
+        print tv
+        print tx
+        print ts
+        print ty
 
 #Below is an example code to be used for when a button is pressed
 #to do something
@@ -120,22 +127,31 @@ class MyRobot(wpilib.TimedRobot):
                 self.motor6.set(.2)
 
             else:
-                if self.joy.getRawButton(3): #FIRE ZE LAZERZ!
-                    self.motor5.set(.6)
-                    self.motor6.set(-.4)
-
-
-                else:
-                    if self.joy.getRawButton(7): #Relax....  take a rest and stop motors
-                        self.motor6.set(0)
-                        self.motor5.set(0)
-
+                if self.joy.getRawButton(7): #Relax....  take a rest and stop motors
+                    self.motor6.set(0)
+                    self.motor5.set(0)
 #Arm out
         self.intake.set(wpilib.DoubleSolenoid.Value.kReverse)
 
         if self.joy.getRawButton(4):
             self.intake.toggle()
 
+
+#Vision Options
+#Figure out how far away (distance)
+#Figure out RPM
+#WPI on how to pull those for Readout
+#
+    float KpDistance = -0.1f  #Proportional control constant for distance
+    float current_distance = Estimate_Distance()  #see the 'Case Study: Estimating Distance'
+
+    if self.joy.GetRawButton(6):
+
+        float distance_error = desired_distance - current_distance
+        driving_adjust = KpDistance * distance_error
+
+        left_command += distance_adjust
+        right_command += distance_adjust
 
 
 
