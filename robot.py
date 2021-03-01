@@ -104,7 +104,7 @@ class MyRobot(wpilib.TimedRobot):
 #Below is an example code to be used for when a button is pressed
 #to do something
 
-#Shooter Commands
+#Intake Commands
 
         if self.joy.getRawButton(2): #Turn Intake motors on and intake Belt
                 self.motor5.set(.25)
@@ -114,6 +114,7 @@ class MyRobot(wpilib.TimedRobot):
                 self.motor6.set(0)
                 self.motor5.set(0)
 
+#Motor shooting Speeds Below
         if self.stick.getRawButton(1): #Low Goal - Face On (Distance 0)
                 self.motor5.set(.60)
                 self.motor6.set(-.40)
@@ -134,18 +135,18 @@ class MyRobot(wpilib.TimedRobot):
                 self.motor5.set(0)
                 self.motor6.set(0)
 
-#Arm out
+#Arm out and Feed Balls
 
-        if self.joy.getRawButton(4):
+        if self.joy.getRawButton(4): #Arm Out
             self.intake.set(wpilib.DoubleSolenoid.Value.kForward)
 
-        elif self.joy.getRawButton(5):
+        elif self.joy.getRawButton(5): #Arm in
             self.intake.set(wpilib.DoubleSolenoid.Value.kReverse)
 
-        if self.joy.getRawButton(3):
+        if self.joy.getRawButton(3): #Feed Balls
             self.balls.set(wpilib.DoubleSolenoid.Value.kReverse)
 
-        elif self.joy.getRawButton(7):
+        elif self.joy.getRawButton(7): #Load Balls
             self.balls.set(wpilib.DoubleSolenoid.Value.kForward)
 
 
