@@ -29,7 +29,8 @@ class MyRobot(wpilib.TimedRobot):
 
         self.motor8 = ctre.WPI_VictorSPX(8) #Belt Drive
 
-        self.joy = wpilib.Joystick(0) #this is a controller, also acceptable to use Joystick
+        self.joy = wpilib.Joystick(0)
+        self.stick = wpilib.Joystick(1) #this is a controller, also acceptable to use Joystick
         #self.arm = wpilib.Solenoid(1) #calling a solenoid to be used with Pneumatics
         self.intake = wpilib.DoubleSolenoid(0,1)
         self.balls = wpilib.DoubleSolenoid(2,3)
@@ -102,8 +103,8 @@ class MyRobot(wpilib.TimedRobot):
 
 #Shooter Commands
         if self.joy.getRawButton(1): #Start Shooter Motors
-            self.motor5.set(.70)
-            self.motor6.set(-.30) #Value Between -1 and 1 for speeds
+            self.motor5.set(.60)
+            self.motor6.set(-.50) #Value Between -1 and 1 for speeds
 
         else:
             if self.joy.getRawButton(2): #Turn Intake motors on and intake Belt
