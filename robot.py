@@ -96,7 +96,10 @@ class MyRobot(wpilib.TimedRobot):
 
 
         self.myRobot.arcadeDrive(-1*self.joy.getRawAxis(1), self.joy.getRawAxis(0))
+        #Main Driver control for easy collecting of Balls
 
+        self.myRobot.tankDrive(-.5*self.stick.getRawAxis(1), -.5*self.stick.getRawAxis(3))
+        #Fine Tuning Driver Control, for lining up the shots
 
 #Below is an example code to be used for when a button is pressed
 #to do something
