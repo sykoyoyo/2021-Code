@@ -134,16 +134,16 @@ class MyRobot(wpilib.TimedRobot):
 
 #Arm out and Feed Balls
 
-        if self.joy.getRawButton(4):
+        if self.joy.getRawButton(4): #Arm Out
             self.intake.set(wpilib.DoubleSolenoid.Value.kForward)
 
-        elif self.joy.getRawButton(5):
+        elif self.joy.getRawButton(5): #Arm in
             self.intake.set(wpilib.DoubleSolenoid.Value.kReverse)
 
-        if self.joy.getRawButton(3): 
+        if self.joy.getRawButton(3): #Feed Balls
             self.balls.set(wpilib.DoubleSolenoid.Value.kReverse)
 
-        elif self.joy.getRawButton(7):
+        elif self.joy.getRawButton(7): #Load Balls
             self.balls.set(wpilib.DoubleSolenoid.Value.kForward)
 
 
