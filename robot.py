@@ -21,15 +21,17 @@ class MyRobot(wpilib.TimedRobot):
         self.motor3 = ctre.WPI_TalonSRX(3)
         self.motor4 = ctre.WPI_TalonSRX(4)
 
-        self.motor5 = ctre.WPI_TalonFX(5)   #Shooter Motor
+        self.motor5 = ctre.WPI_TalonFX(5)   #intake Motor
 
-        self.motor6 = ctre.WPI_TalonFX(6)   #Intake Motor
+        self.motor6 = ctre.WPI_TalonFX(6)   #Shooter Motor
 
         self.motor7 = ctre.WPI_VictorSPX(7) #Intake Arm
 
         self.motor8 = ctre.WPI_VictorSPX(8) #Belt Drive
 
-        self.joy = wpilib.Joystick(0) #this is a controller, also acceptable to use Joystick
+        self.joy = wpilib.Joystick(0)
+        self.stick = wpilib.Joystick(1) #this is a controller, also acceptable to use Joystick
+
         self.intake = wpilib.DoubleSolenoid(0,1)
         self.balls = wpilib.DoubleSolenoid(2,3)
 
@@ -100,19 +102,34 @@ class MyRobot(wpilib.TimedRobot):
 #to do something
 
 #Shooter Commands
-        if self.joy.getRawButton(1): #Start Shooter Motors
-            self.motor5.set(.70)
-            self.motor6.set(-.30) #Value Between -1 and 1 for speeds
 
-        else:
-            if self.joy.getRawButton(2): #Turn Intake motors on and intake Belt
+        if self.joy.getRawButton(2): #Turn Intake motors on and intake Belt
                 self.motor5.set(.25)
                 self.motor6.set(.1)
 
-            else:
-                if self.joy.getRawButton(7): #Relax....  take a rest and stop motors
+        elif self.joy.getRawButton(7): #Relax....  take a rest and stop motors
                         self.motor6.set(0)
                         self.motor5.set(0)
+
+        if self.stick.getRawButton(1): #Low Goal - Face On (Distance 0)
+                self.motor5.set(.60)
+                self.motor6.set(-.40)
+
+        elif self.stick.getRawButton(2): #7.5-12.5 Ft Shot
+                self.motor5.set(.85)
+                self.motor6.set(-.15)
+
+        elif self.stick.getRawButton(3): #12.5-17.5 ft Shot
+                self.motor5.set(.60)
+                self.motor6.set(-.50)
+
+        elif self.stick.getRawButton(4): #17.5 - 22.5 ft Shot
+                self.motor5.set(.7)
+                self.motor6.set(-.7)
+
+        elif self.stick.getRawButton(5):
+                self.motor5.set(0)
+                self.motor6.set(0)
 
 #Arm out
 
