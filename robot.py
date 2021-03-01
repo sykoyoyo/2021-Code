@@ -108,8 +108,8 @@ class MyRobot(wpilib.TimedRobot):
                 self.motor6.set(.1)
 
         elif self.joy.getRawButton(7): #Relax....  take a rest and stop motors
-                        self.motor6.set(0)
-                        self.motor5.set(0)
+                self.motor6.set(0)
+                self.motor5.set(0)
 
         if self.stick.getRawButton(1): #Low Goal - Face On (Distance 0)
                 self.motor5.set(.60)
@@ -127,7 +127,7 @@ class MyRobot(wpilib.TimedRobot):
                 self.motor5.set(.7)
                 self.motor6.set(-.7)
 
-        elif self.stick.getRawButton(5):
+        elif self.stick.getRawButton(5): #Stop motors
                 self.motor5.set(0)
                 self.motor6.set(0)
 
