@@ -93,12 +93,13 @@ class MyRobot(wpilib.TimedRobot):
     def teleopPeriodic(self):
 
 #Runs Robot on Arcade Drive
-
-
         self.myRobot.arcadeDrive(-1*self.joy.getRawAxis(1), self.joy.getRawAxis(0))
+        
+        if self.stick.getRawButton(9):
+            self.myRobot.arcadeDrive(-1*self.joy.getRawAxis(1), self.joy.getRawAxis(0))
         #Main Driver control for easy collecting of Balls
-
-        self.myRobot.tankDrive(-.5*self.stick.getRawAxis(1), -.5*self.stick.getRawAxis(3))
+        elif self.joy.getRawButton(6):
+            self.myRobot.tankDrive(-.5*self.stick.getRawAxis(1), -.5*self.stick.getRawAxis(3))
         #Fine Tuning Driver Control, for lining up the shots
 
 #Below is an example code to be used for when a button is pressed
