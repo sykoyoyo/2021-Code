@@ -95,7 +95,7 @@ class MyRobot(wpilib.TimedRobot):
 #Runs Robot on Arcade Drive
 
 
-        self.myRobot.arcadeDrive(-1*self.joy.getRawAxis(1), self.joy.getRawAxis(0))
+        self.myRobot.tankDrive(-.5*self.stick.getRawAxis(1), self.stick.getRawAxis(5)*-.5)
 
 
 #Below is an example code to be used for when a button is pressed
@@ -122,7 +122,7 @@ class MyRobot(wpilib.TimedRobot):
 
         elif self.stick.getRawButton(3): #12.5-17.5 ft Shot
                 self.motor5.set(.60)
-                self.motor6.set(-.50)
+                self.motor6.set(-.40)
 
         elif self.stick.getRawButton(4): #17.5 - 22.5 ft Shot
                 self.motor5.set(.7)
@@ -140,10 +140,10 @@ class MyRobot(wpilib.TimedRobot):
         elif self.joy.getRawButton(5): #Arm in
             self.intake.set(wpilib.DoubleSolenoid.Value.kReverse)
 
-        if self.joy.getRawButton(3): #Feed Balls
+        elif self.stick.getRawButton(6):
             self.balls.set(wpilib.DoubleSolenoid.Value.kReverse)
 
-        elif self.joy.getRawButton(7): #Load Balls
+        elif self.stick.getRawButton(5):
             self.balls.set(wpilib.DoubleSolenoid.Value.kForward)
 
 
