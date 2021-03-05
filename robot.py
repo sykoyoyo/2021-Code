@@ -94,7 +94,7 @@ class MyRobot(wpilib.TimedRobot):
 
 #Runs Robot on Arcade Drive
         if abs(self.stick.getRawAxis(1)) > 0.05 or abs(self.stick.getRawAxis(5)) > 0.05:
-            self.myRobot.tankDrive(-.5*self.stick.getRawAxis(1), -.5*self.stick.getRawAxis(5))
+            self.myRobot.tankDrive(-.75*self.stick.getRawAxis(1), -.75*self.stick.getRawAxis(5))
         else:
             self.myRobot.arcadeDrive(-1*self.joy.getRawAxis(1), self.joy.getRawAxis(0))
         #Fine Tuning Driver Control, for lining up the shots
