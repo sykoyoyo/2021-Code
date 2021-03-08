@@ -14,7 +14,6 @@ from robotpy_ext.autonomous import AutonomousModeSelector
 class MyRobot(wpilib.TimedRobot):
 
     def robotInit(self):
-        wpilib.CameraServer.launch() #launch webcam CameraServer
         #Drive Motors
         self.motor1 = ctre.WPI_TalonSRX(1)  # Initialize the TalonSRX on device 1.
         self.motor2 = ctre.WPI_TalonSRX(2)
