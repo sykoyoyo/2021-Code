@@ -60,8 +60,10 @@ class MyRobot(wpilib.TimedRobot):
 
         self.components = {
             'myRobot': self.myRobot, #Chassis Driving
-            'motor5': self.motor5, #A speed control that is used for intake
-            'intake': self.intake #pneumatics arm that is not setup on bot yet
+            'motor5': self.motor5,
+            'motor6': self.motor6, #A speed control that is used for intake
+            'intake': self.intake,
+            'balls': self.balls #pneumatics arm that is not setup on bot yet
         }
 
         self.automodes = AutonomousModeSelector('autonomous', self.components)
