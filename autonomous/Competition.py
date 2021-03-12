@@ -6,9 +6,6 @@ class DriveForward(StatefulAutonomous):
 
     MODE_NAME = 'Competition_Backup'
 
-    def initialize(self):
-
-
     @timed_state(duration=0.1, next_state='backwards', first=True)
     def drive_wait(self):
         self.myRobot.tankDrive(0,0)
