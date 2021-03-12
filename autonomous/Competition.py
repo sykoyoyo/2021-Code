@@ -33,11 +33,11 @@ class DriveForward(StatefulAutonomous):
         self.myRobot.tankDrive(0, 0)
         self.motor5.set(.6)
         self.motor6.set(-.4)
-        self.balls.toggle()
+        self.balls.set(wpilib.DoubleSolenoid.Value.kReverse)
 
     @timed_state(duration=1.35)
     def Return(self):
         self.myRobot.tankDrive(-.5, -.5)
         self.motor5.set(0)
         self.motor6.set(0)
-        self.balls.toggle()
+        self.balls.set(wpilib.DoubleSolenoid.Value.kForward)
