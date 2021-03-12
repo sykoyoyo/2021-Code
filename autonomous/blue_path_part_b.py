@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from robotpy_ext.autonomous import StatefulAutonomous, timed_state, state
+import wpilib
 
 class DriveForward(StatefulAutonomous):
 
@@ -9,14 +10,17 @@ class DriveForward(StatefulAutonomous):
     def initialize(self):
 
         self.speed = -.4
+        self.intake.set(wpilib.DoubleSolenoid.Value.kForward)
 
     @timed_state(duration=0.5, next_state='drive_forward', first=True)
     def drive_wait(self):
         self.myRobot.tankDrive(0,0)
+        self.intake.set(wpilib.DoubleSolenoid.Value.kForward)
 
     @timed_state(duration=2.5, next_state='turn_left')
     def drive_forward(self):
         self.myRobot.tankDrive(.8,.8)
+        self.motor5.set(.15)
 
     @timed_state(duration=1, next_state='drive_forward2')
     def turn_left(self):

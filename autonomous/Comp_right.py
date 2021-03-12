@@ -5,7 +5,7 @@ import wpilib
 
 class DriveForward(StatefulAutonomous):
 
-    MODE_NAME = 'Competition_Backup'
+    MODE_NAME = 'Competition_right'
 
     def initialize(self):
         self.balls.set(wpilib.DoubleSolenoid.Value.kForward)
@@ -25,19 +25,19 @@ class DriveForward(StatefulAutonomous):
     @timed_state(duration=2, next_state='fire')
     def spinmotors(self):
         self.myRobot.tankDrive(0, 0)
-        self.motor5.set(.7)
-        self.motor6.set(-.5)
+        self.motor5.set(.8)
+        self.motor6.set(-.6)
 
     @timed_state(duration=5, next_state='Return')
     def fire(self):
         self.myRobot.tankDrive(0, 0)
-        self.motor5.set(.7)
-        self.motor6.set(-.5)
+        self.motor5.set(.8)
+        self.motor6.set(-.6)
         self.balls.set(wpilib.DoubleSolenoid.Value.kReverse)
 
-    @timed_state(duration=3)
+    @timed_state(duration=2)
     def Return(self):
-        self.myRobot.tankDrive(-.5, -.5)
+        self.myRobot.tankDrive(-.5, .3)
         self.motor5.set(0)
         self.motor6.set(0)
         self.balls.set(wpilib.DoubleSolenoid.Value.kForward)
