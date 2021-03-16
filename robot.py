@@ -105,6 +105,10 @@ class MyRobot(wpilib.TimedRobot):
 
 #Intake Commands
 
+        self.balls.set(wpilib.DoubleSolenoid.Value.kForward)
+        self.motor5.set(0)
+        self.motor6.set(0)
+
         if self.joy.getRawButton(2): #Turn Intake motors on and intake Belt
                 self.motor5.set(.25)
                 self.motor6.set(.1)
