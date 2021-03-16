@@ -106,7 +106,7 @@ class MyRobot(wpilib.TimedRobot):
 #Intake Commands
 
         if self.joy.getRawButton(2): #Turn Intake motors on and intake Belt
-                self.motor5.set(.25)
+                self.motor5.set(.15)
                 self.motor6.set(.1)
 
         elif self.joy.getRawButton(7): #Relax....  take a rest and stop motors
